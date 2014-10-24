@@ -31,10 +31,8 @@ for i in range(N):
     if left != '#':
       c = left
       if top != '#' and top != left:
-        jumps[top] = [] if top not in jumps else jumps[top]
-        jumps[top].append(left)
-        jumps[left] = [] if left not in jumps else jumps[left]
-        jumps[left].append(top)
+        jumps.setdefault(top,[]).append(left)
+        jumps.setdefault(left,[]).append(top)
     elif top != '#':
       c = top
     else:
