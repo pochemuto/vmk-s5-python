@@ -3,22 +3,23 @@
 seq = raw_input().split()
 
 ops = {
-  '+': lambda x, y: x + y,
-  '-': lambda x, y: x - y,
-  '*': lambda x, y: x * y,
-  '/': lambda x, y: x / y,
+  '+': lambda y, x: x + y,
+  '-': lambda y, x: x - y,
+  '*': lambda y, x: x * y,
+  '/': lambda y, x: x / y,
 }
 
 stack = []
 try:
   for i in seq:
     if i in ops.keys():
-      b = stack.pop()
-      a = stack.pop()
-      stack.append( ops[i]( a, b ) )
+      stack.append( ops[i]( stack.pop(), stack.pop() ) )
     else:
       stack.append(int(i))
 
-  print stack[0]
+  if len(stack) == 1:
+    print stack[0]
+  else:
+    print "ERROR"
 except:
   print "ERROR"
